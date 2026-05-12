@@ -3,24 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jakob A</title>
+    <title>Jakob Amtedal</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: #0D1B2A;
             color: #CBD5E1;
             font-family: Calibri, sans-serif;
             max-width: 700px;
             margin: 60px auto;
-            padding: 0 20px;
+            padding: 0 24px;
+            line-height: 1.7;
         }
 
         h1 {
             color: #F0F4F8;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #F0F4F8;
+            font-size: 1.1rem;
+            margin: 48px 0 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .subtitle {
+            color: #00B4D8;
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #1B2E42;
+            margin: 32px 0;
+        }
+
+        .project {
+            margin-bottom: 24px;
+        }
+
+        .project h3 {
+            color: #F0F4F8;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .project p {
+            font-size: 0.95rem;
+            color: #8BA3B8;
+        }
+
+        footer {
+            margin-top: 64px;
+            font-size: 0.85rem;
+            color: #8BA3B8;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is a basic HTML page.</p>
+
+    <h1>Jakob Amtedal</h1>
+    <p class="subtitle">Master's student · Robotics & Control Systems</p>
+    <p>I build things — embedded systems, robots, and the occasional side project that gets out of hand. This site is a work in progress where I document what I make.</p>
+
+    <hr class="divider">
+
+    <h2>Projects</h2>
+
+    <div class="project">
+        <h3>Real-Time Ball Balancing Platform</h3>
+        <p>Closed-loop PID control with computer vision for real-time ball tracking on a 3-servo platform.</p>
+    </div>
+
+    <div class="project">
+        <h3>Acoustic Indoor Positioning System</h3>
+        <p>Bachelor thesis — ultrasonic TDOA-based localization for indoor drones, built in Python and C++.</p>
+    </div>
+
+    <div class="project">
+        <h3>Custom Arduino Motor Shield</h3>
+        <p>PCB design from schematic to layout — H-bridge, PWM speed control, external power supply.</p>
+    </div>
+
+    <div class="project">
+        <h3>ROS2 Robot Simulation</h3>
+        <p>Differential drive robot with LiDAR in Gazebo/RViz, with a P-controller for autonomous wall-following.</p>
+    </div>
+
+    <div class="project">
+        <h3>Voice-Activated AI Assistant</h3>
+        <p>Raspberry Pi chatbot with wake-word detection, Gemini API, and text-to-speech output.</p>
+    </div>
+
+    <div class="project">
+        <h3>WatchMate</h3>
+        <p>3D-printed watch stand brand — designed, manufactured, and sold through Shopify and watch fairs in Norway.</p>
+    </div>
+
+    <hr class="divider">
+
+    <footer>
+        github.com/jakob · Made in Norway
+    </footer>
+
 </body>
 </html>
