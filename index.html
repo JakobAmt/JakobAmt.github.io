@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jakob Amtedal</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: #0D1B2A;
             color: #CBD5E1;
             font-family: Calibri, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: #8BA3B8;
+            text-decoration: none;
+        }
+
+        a:hover, a.active { color: #00B4D8; }
+
+        .nav-table {
+            border-bottom: 1px solid #1B2E42;
+            padding: 0 40px;
+            height: 56px;
+        }
+
+        .content {
             max-width: 700px;
             margin: 60px auto;
             padding: 0 24px;
-            line-height: 1.7;
         }
 
         h1 {
@@ -27,43 +39,13 @@
             margin-bottom: 8px;
         }
 
-        h2 {
-            color: #F0F4F8;
-            font-size: 1.1rem;
-            margin: 48px 0 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
         .subtitle {
             color: #00B4D8;
             margin-bottom: 24px;
-            font-size: 1rem;
-        }
-
-        .divider {
-            border: none;
-            border-top: 1px solid #1B2E42;
-            margin: 32px 0;
-        }
-
-        .project {
-            margin-bottom: 24px;
-        }
-
-        .project h3 {
-            color: #F0F4F8;
-            font-size: 1rem;
-            margin-bottom: 4px;
-        }
-
-        .project p {
-            font-size: 0.95rem;
-            color: #8BA3B8;
         }
 
         footer {
-            margin-top: 64px;
+            margin-top: 80px;
             font-size: 0.85rem;
             color: #8BA3B8;
         }
@@ -71,13 +53,28 @@
 </head>
 <body>
 
-    <h1>Jakob A</h1>
-    <p class="subtitle">Master's student · Robotics & Control Systems</p>
-    <p>I build things, website is a work in progress</p>
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="index.html" class="active">Home</a></td>
+                        <td style="padding-left:32px;"><a href="about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="projects.html">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 
-    <hr class="divider">
+    <div class="content">
+        <h1>Jakob A</h1>
+        <p class="subtitle">Master's student · Robotics & Control Systems</p>
+        <p>Work in progress.</p>
 
-    <h2>Comming Soon</h2>
+        <footer>Made in Norway</footer>
+    </div>
 
 </body>
 </html>
