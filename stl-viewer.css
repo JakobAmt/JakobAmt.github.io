@@ -3,8 +3,8 @@
 
 .stl-viewer {
     position: relative;
-    width: 200%;
-    aspect-ratio: 4 / 2;
+    width: 100%;
+    aspect-ratio: 3 / 2;
     background: #13233A;
     border: 1px solid #1B2E42;
     border-radius: 6px;
