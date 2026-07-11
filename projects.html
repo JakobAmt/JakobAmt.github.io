@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Jakob A</title>
     <link rel="stylesheet" href="style.css">
+
+    <script type="importmap">
+    {
+    "imports": {
+        "three": "https://unpkg.com/three@0.166.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.166.0/examples/jsm/"
+        }
+    }
+    </script>
+
 </head>
 <body>
  
@@ -29,6 +39,12 @@
         <hr class="divider">
  
         <p>Here are some of the projects I've been working on:</p>
+
+        <div class="project">
+            <h3>Hobby Buisness and 3D modelling</h3>
+            <p>Designed and manufactured custom 3D models to display different writstwatches with unique motifs.</p>
+            <div class="stl-viewer" data-stl="models/test.stl" data-color="#ffffff"></div>
+            <p class="stl-viewer-hint">Drag to rotate · scroll to zoom (sample model — swap the data-stl path for your own file)</p>
 
         <div class="project">
             <h3>ML Quadcopter</h3>
@@ -71,6 +87,7 @@
  
         <footer>Made in Norway</footer>
     </div>
- 
+
+    <script type="module" src="stl-viewer.js"></script>
 </body>
 </html>

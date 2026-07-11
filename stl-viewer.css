@@ -1,0 +1,40 @@
+/* --- STL viewer -------------------------------------------------- */
+/* Append this block to style.css */
+
+.stl-viewer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #13233A;
+    border: 1px solid #1B2E42;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 16px 0;
+    cursor: grab;
+}
+
+.stl-viewer:active {
+    cursor: grabbing;
+}
+
+.stl-viewer canvas {
+    display: block;
+}
+
+.stl-viewer-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #8BA3B8;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+}
+
+.stl-viewer-hint {
+    font-size: 0.75rem;
+    color: #8BA3B8;
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
