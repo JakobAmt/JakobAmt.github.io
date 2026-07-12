@@ -49,7 +49,7 @@ function createViewer(container) {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(width, height);
+    renderer.setSize(width, height, false);
     container.appendChild(renderer.domElement);
 
     // Lighting — soft key + fill + rim, so geometry reads without needing
@@ -98,10 +98,13 @@ function createViewer(container) {
             mesh.rotation.set(rotateX, rotateY, rotateZ);
 
             // Frame the model: fit camera distance to its bounding sphere.
+            // The 1.15 multiplier is just a small margin so the model
+            // doesn't touch the edges — lower it further for an even
+            // tighter fit, raise it for more breathing room.
             geometry.computeBoundingSphere();
             const radius = geometry.boundingSphere.radius || 1;
             const fitDistance = radius / Math.sin((Math.PI * camera.fov) / 360);
-            camera.position.set(0, 0, fitDistance * 1.5);
+            camera.position.set(0, 0, fitDistance * 1.15);
             camera.near = fitDistance / 100;
             camera.far = fitDistance * 100;
             camera.updateProjectionMatrix();
@@ -123,7 +126,7 @@ function createViewer(container) {
         if (w === 0 || h === 0) return;
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
+        renderer.setSize(w, h, false);
     }
     new ResizeObserver(onResize).observe(container);
 
