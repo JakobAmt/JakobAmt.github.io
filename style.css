@@ -111,6 +111,10 @@ footer {
     margin-bottom: 16px;
 }
 
+.stl-viewer-hint a {
+    text-decoration: underline;
+}
+
 /* --- Image gallery ------------------------------------------------ */
 
 .image-gallery {
