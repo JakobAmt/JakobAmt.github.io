@@ -42,13 +42,13 @@
 }
 
 /* --- Image gallery ------------------------------------------------ */
- 
+
 .image-gallery {
     display: flex;
     gap: 12px;
     margin: 16px 0;
 }
- 
+
 .image-gallery img {
     flex: 1 1 0;
     width: 100%;
@@ -58,7 +58,7 @@
     border-radius: 6px;
     border: 1px solid #1B2E42;
 }
- 
+
 @media (max-width: 600px) {
     .image-gallery {
         flex-direction: column;
