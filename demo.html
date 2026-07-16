@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STL Viewer Demo — Jakob A</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- STL viewer --- */
+        .stl-viewer {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #13233A;
+            border: 1px solid #1B2E42;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 16px 0;
+            cursor: grab;
+        }
+        .stl-viewer:active { cursor: grabbing; }
+        .stl-viewer canvas { display: block; }
+        .stl-viewer-status {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #8BA3B8; font-size: 0.85rem; letter-spacing: 0.02em;
+            pointer-events: none;
+        }
+        .stl-viewer-hint {
+            font-size: 0.75rem; color: #8BA3B8;
+            margin-top: -8px; margin-bottom: 16px;
+        }
+        .project {
+            border: 1px solid #1B2E42;
+            border-radius: 6px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .project h3 { color: #F0F4F8; margin-bottom: 8px; }
+    </style>
+
+    <!-- Import map: tells the browser where to fetch three.js from. -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.166.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.166.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+        <h2>Projects</h2>
+        <hr class="divider">
+
+        <div class="project">
+            <h3>PCB Design: Custom Arduino Motor Shield</h3>
+            <p>Designed and manufactured a custom Arduino shield for DC motor control, with an H-bridge circuit for bidirectional rotation and PWM-based speed control.</p>
+
+            <div class="stl-viewer" data-stl="models/test.stl" data-color="#ffffff"></div>
+            <p class="stl-viewer-hint">Drag to rotate · scroll to zoom (sample model — swap the data-stl path for your own file)</p>
+        </div>
+
+        <footer>Made in Norway</footer>
+    </div>
+
+    <script type="module" src="stl-viewer.js"></script>
+
+</body>
+</html>
