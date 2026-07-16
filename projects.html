@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
+
     <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="200"><a href="index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
@@ -22,55 +22,71 @@
             </td>
         </tr>
     </table>
- 
+
     <div class="content">
         <h2>Projects</h2>
- 
         <hr class="divider">
- 
-        <p>Here are some of the projects I've been working on:</p>
+        <p>Here are some of the projects I've been working on. Click into any of them to see the full write-up.</p>
+    </div>
 
-        <div class="project">
-            <h3>ML Quadcopter</h3>
-            <p>A quadcopter built to fly autonomously using an onboard machine learning model for
-                 object detection and obstacle avoidance. Covers the frame build, flight controller setup, and training the vision model.</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/S3OwnkTlxnk?si=vdtgrNjXBXaz41Yc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+    <div class="project-grid">
 
-        <div class="project">
-            <h3>ROS2 Robot using lidar to solve labyrinth with SLAM</h3>
-            <p>A ros2 simulation of a Roomba robot using differential drive equipped with a lidar 
-                sensor for navigation and mapping. Driving autonomously through a small labyrinth exploring and mapping its environment. Demo video below doesnt show the SLAM mapping in action, only the lidar with different settings. This one uses a PD controller to avoid the walls</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/vR454tb5PYI?si=D786Q_cBvPfw9leB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        <!-- Example project card - fully built out -->
+        <a class="project-card" href="projects/ball-balancer.html">
+            <img class="project-card-img" src="pictures/ball-balancer/thumb.jpg" alt="Ball balancing platform">
+            <div class="project-card-body">
+                <h3>Real-Time Ball Balancing System</h3>
+                <p>PID control + computer vision on a 3-servo platform</p>
+            </div>
+        </a>
 
-        <div class="project">
-            <h3>R2D2 Voice Assistant</h3>
-            <p>A functional miniature R2D2 replica with a built-in voice assistant, 
-                running on a Raspberry Pi for movement and sound. Handles wake-word detection, voice commands, 
-                and classic R2D2-style beep responses.</p>
-        </div>
+        <!-- Placeholder cards - swap the div.project-card-placeholder for an <img> once you have pictures, and point href at the new subpage -->
+        <a class="project-card" href="#">
+            <div class="project-card-placeholder">image coming soon</div>
+            <div class="project-card-body">
+                <h3>Acoustic Indoor Positioning System</h3>
+                <p>Bachelor thesis — TDOA drone localization</p>
+            </div>
+        </a>
 
-        <div class="project">
-            <h3>Real-time Ball Balancing System</h3>
-            <p> A ball-balancing platform combining two PID controllers with computer vision to track and stabilize a ball in real time. 
-                Built with a 3-servo platform, controlled through Python, C++, and MATLAB.
-            </p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/c5nhp6Jgblc?si=cRY6Rx6ry5Zv8nL1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        <a class="project-card" href="#">
+            <div class="project-card-placeholder">image coming soon</div>
+            <div class="project-card-body">
+                <h3>Custom Arduino Motor Shield</h3>
+                <p>PCB design, schematic to layout</p>
+            </div>
+        </a>
 
-        <div class="project">
-            <h3>Acoustic Indoor Positioning System for Autonomous Drones (Bachelor Thesis)</h3>
-            <p>Investigated ultrasonic time-difference-of-arrival (TDOA) for indoor drone localization, 
-                aimed at theatrical stage environments. Fixed anchor nodes triangulate the drone's position in real time, 
-                with the full pipeline built in Python and C++.</p> 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/QBF4H6GgW6Y?si=dSEuj0H7uVttKZ1T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>       
-        </div>
+        <a class="project-card" href="projects/watchmate.html">
+            <img class="project-card-img" src="pictures/watchmate/thumb.jpg" alt="WatchMate 3D-printed watch stand">
+            <div class="project-card-body">
+                <h3>Amtedal Design & WatchMate</h3>
+                <p>3D-printed product line, sole proprietorship</p>
+            </div>
+        </a>
 
+        <a class="project-card" href="#">
+            <div class="project-card-placeholder">image coming soon</div>
+            <div class="project-card-body">
+                <h3>Voice-Activated AI Assistant</h3>
+                <p>R2D2 build on Raspberry Pi</p>
+            </div>
+        </a>
+
+        <a class="project-card" href="#">
+            <div class="project-card-placeholder">image coming soon</div>
+            <div class="project-card-body">
+                <h3>Autonomous Wall-Following Robot</h3>
+                <p>ROS2 / Gazebo, LiDAR + SLAM</p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="content">
         <hr class="divider">
- 
         <footer>Made in Norway</footer>
     </div>
- 
+
 </body>
 </html>
