@@ -1,30 +1,39 @@
 // Reusable STL viewer.
-// Usage: <div class="stl-viewer" data-model="../models/file.stl"></div>
-// Optional attributes: data-color="#8BA3B8"  data-bg="#0D1B2A"
+// Usage: <div class="stl-viewer" data-stl="models/file.stl"></div>
+// Optional attributes:
+//   data-color="#8BA3B8"     mesh color
+//   data-rotate-x="-90"      degrees, correct Z-up STL to Y-up scene
+//   data-rotate-z="90"       degrees, additional correction per-model
 //
-// Key gotchas this file works around (see notes inline):
+// Key gotchas this file works around:
 // 1. renderer.setSize()'s 3rd arg must be `false`, otherwise Three.js writes
 //    inline pixel width/height on the <canvas>, which fights our responsive
 //    CSS (canvas gets stuck at its initial size on window resize / layout change).
-// 2. STL files are usually authored Z-up; most viewers expect Y-up, so the
-//    mesh is rotated -90deg on X after load.
+// 2. STL files are usually authored Z-up; the fix isn't one fixed rotation for
+//    every model, it varies per-export, hence the data-rotate-x / data-rotate-z
+//    attributes instead of a hardcoded value.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 function initViewer(container) {
-    const modelPath = container.dataset.model;
-    const bgColor = container.dataset.bg || '#0D1B2A';
+    const modelPath = container.dataset.stl;
     const modelColor = container.dataset.color || '#8BA3B8';
+    const rotateX = parseFloat(container.dataset.rotateX || '0');
+    const rotateZ = parseFloat(container.dataset.rotateZ || '0');
 
     if (!modelPath) {
-        container.innerHTML = '<p class="stl-viewer-hint">No model path set (missing data-model attribute).</p>';
+        container.innerHTML = '<p class="stl-viewer-hint">No model path set (missing data-stl attribute).</p>';
         return;
     }
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(bgColor);
+    const status = document.createElement('div');
+    status.className = 'stl-viewer-status';
+    status.textContent = 'Loading model…';
+    container.appendChild(status);
+
+    const scene = new THREE.Scene(); // no scene.background set -> canvas stays transparent, container CSS background shows through
 
     const camera = new THREE.PerspectiveCamera(
         45,
@@ -33,7 +42,7 @@ function initViewer(container) {
         1000
     );
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight, false); // false = responsive CSS controls size, not Three.js
     container.appendChild(renderer.domElement);
@@ -64,7 +73,8 @@ function initViewer(container) {
                 roughness: 0.55,
             });
             const mesh = new THREE.Mesh(geometry, material);
-            mesh.rotation.x = -Math.PI / 2; // STL is typically Z-up, scene is Y-up
+            mesh.rotation.x = THREE.MathUtils.degToRad(rotateX);
+            mesh.rotation.z = THREE.MathUtils.degToRad(rotateZ);
             scene.add(mesh);
 
             const distance = radius * 2.4;
@@ -74,6 +84,8 @@ function initViewer(container) {
             camera.updateProjectionMatrix();
             controls.target.set(0, 0, 0);
             controls.update();
+
+            status.remove();
         },
         undefined,
         (error) => {
