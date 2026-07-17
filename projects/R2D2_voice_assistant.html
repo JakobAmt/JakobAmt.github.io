@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astromech Voice Assistant - Jakob A</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Three.js via CDN import map, no build step -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.166.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.166.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="../index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="../index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="../about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="../projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+
+        <a class="back-link" href="../projects.html">Back to Projects</a>
+
+        <h1>Astromech Voice Assistant</h1>
+        <p class="subtitle">An interactive voice assistant inspired by R2D2 Astromech Droid.</p>
+
+        <div class="tag-row">
+            <span class="tag">Voice Recognition</span>
+            <span class="tag">Natural Language Processing</span>
+            <span class="tag">Python</span>
+            <span class="tag">APIs</span>
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Electronics</span>
+        </div>
+
+        <p>A fully functional AI-powered voice assistant built inside a 22cm tall 3D-printed miniature astromech model, 
+            running on a Raspberry Pi 5. The project combines hardware electronics,
+            mechanical design, and modern AI APIs to create a characterful desktop companion that responds to voice commands, 
+            displays animations, and reacts to its environment with lights and sound.</p>
+
+        <hr class="divider">
+
+        <h3>System Flowchart</h3>
+        <p>
+            &bull; Listening for the wakeword "Hey R2"<br>
+            &bull; Play sound effects when wakeword is detected, start listening for command or question.<br>
+            &bull; Using Text-to-Speech (TTS) and sends it to Gemini API<br>
+            &bull; receives responses from Gemini API and sends it to ElevenLabs Voice Text to Speech API<br>
+            &bull; Plays the response audio through the speaker.<br>
+        </p>
+
+        <hr class="divider">
+
+        <div class="project-links">
+            <a href="https://github.com/JakobAmt/R2D2-Voice-Assistant" target="_blank" rel="noopener">Astromech GitHub Repository</a>
+        </div>
+
+        <hr class="divider">
+
+        <footer>Made in Norway</footer>
+    </div>
+
+    <script type="module" src="../stl-viewer.js"></script>
+
+</body>
+</html>
