@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Quadcopter Ring-Gate Navigation via Reinforcement Learning - Jakob A</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="../index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="../index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="../about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="../projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+
+        <a class="back-link" href="../projects.html">Back to Projects</a>
+
+        <h1>Autonomous Quadcopter Ring-Gate Navigation via Reinforcement Learning</h1>
+        <p class="subtitle">Reinforcement learning for autonomous navigation through ring gates</p>
+
+        <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">ROS2</span>
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Computer Vision</span>
+        </div>
+
+        <img src="../pictures/quadcopter_rings_RL/quadcopter_rl_heropic.png" alt="" style="width: 75%;">
+
+        <h3>Project Overview</h3>
+        <p>This project implements an autonomous quadcopter capable of navigating through a sequence of ring-shaped gates using a reinforcement learning (RL) policy trained with Proximal Policy Optimization (PPO). The system spans two parallel implementations: a high-fidelity ROS2/Gazebo simulation stack used for realistic deployment testing, and a lightweight, pure-Python "faithful" training environment designed to replicate the deployment stack's dynamics, perception, and control logic closely enough that a policy trained in one transfers meaningfully to the other. This dual-environment approach lets the team iterate on RL training quickly (the faithful simulator runs far faster than Gazebo) while still validating behavior in a physically realistic, sensor-driven simulation before any real-world consideration.</p>
+
+        <hr class="divider">
+
+        <h3>Demo Video comparing with Finite State Machine: </h3>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/S3OwnkTlxnk?si=0h7qtcOTrBMkDi1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        Video shows a side-by-side comparison of the RL policy (right) and a hand-coded finite state machine (FSM) controller (left) navigating through a sequence of ring gates in the Gazebo simulation. The RL policy demonstrates smoother, more efficient navigation, while the FSM exhibits oscillatory behavior and occasional gate misses.
+
+        <hr class="divider">
+
+        <h3>System Overview</h3>
+        <p><strong>Perception:</strong> LiDAR point clouds are processed to detect ring-shaped clusters (lidar_perception.py), producing a smoothed 11D observation (bearing, distance, velocity, previous action). The faithful simulator (faithful_perception.py) reproduces this synthetically with realistic noise, dropout, and bias.</p>
+
+        <p><strong>Control:</strong> A shared "search vs. lock" strategy — sweeping to find a ring, then locking onto and tracking it once detected — is implemented near-identically in deployment (rl_controller.py) and training (faithful_controller.py), so the RL policy learns behavior consistent with the real controller.</p>
+
+        <p><strong>Dynamics:</strong> Deployment uses PX4/Gazebo physics via a frame-conversion bridge (px4_bridge.py); training uses a simplified first-order velocity model (faithful_dynamics.py) for speed.</p>
+
+        <p><strong>RL Policy:</strong> A PPO model (train_ppo_faithful.py) maps the 11D observation to a 3D velocity command, deployed live via fast_rl_policy_runner.py.</p>
+
+        <p><strong>Reward:</strong> faithful_ring_env.py implements a dense, curriculum-staged reward combining progress shaping, alignment bonuses, anti-oscillation penalties, and a quality-weighted bonus for centered, well-aligned gate crossings versus a penalty for misses.</p>
+    </div>
+</body>
+</html>
