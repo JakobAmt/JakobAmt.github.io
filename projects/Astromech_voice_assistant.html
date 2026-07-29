@@ -52,18 +52,36 @@
         <p>A AI-powered voice assistant built inside a 22cm tall 3D-printed custom astromech model, 
             running on a Raspberry Pi 5. The project combines hardware electronics,
             mechanical design, and AI APIs to create a desktop companion that responds to voice commands, 
-            displays animations, and reacts to its environment with lights and sound.</p>
+            displays animations, and reacts to its requests with lights and sound.</p>
 
         <hr class="divider">
 
         <h3>System Flowchart</h3>
         <p>
-            &bull; Listening for the wakeword "Hey R2"<br>
-            &bull; Play sound effects when wakeword is detected, start listening for command or question.<br>
-            &bull; Using Text-to-Speech (TTS) and sends it to Gemini API<br>
-            &bull; receives responses from Gemini API and sends it to ElevenLabs Voice Text to Speech API<br>
-            &bull; Plays the response audio through the speaker.<br>
+            &bull; The raspberry pi is listening for the wakeword: "Hey R2"<br>
+            &bull; Thens plays a sound effect when wakeword is detected, then starting to listening for a command or question.<br>
+            &bull; Using Text-to-Speech (TTS) and sends the question to Gemini API<br>
+            &bull; Gemini sends a response over to ElevenLabs Voice Text to Speech API<br>
+            &bull; Finally, the systems plays the response audio through the speaker.<br>
         </p>
+
+        <hr class="divider">
+        
+        <h3>Other Functions of the Astromech</h3>
+        <p>
+            &bull; Responds to any type of question or request with the gemini<br>
+            &bull; Plays random sound effects when the wakeword is detected<br>
+            &bull; Displays animations on a 0.96" OLED screen<br>
+            &bull; Different LED light patterns based on the status of the system<br>
+            &bull; Rasberry hosts a local website for monitoring and control <br> 
+        </p>
+
+        <hr class="divider">
+
+        <div class="image-container">
+        <img src="../pictures/r2d2 exploded diagram.png" alt="" style="width: 75%;">
+        </div>
+        <p>Exploded Diagram of the Astromech drawn with AI</p>
 
         <hr class="divider">
 
@@ -71,8 +89,6 @@
         and API integration. This can also be built futher upon with more APIs, a camera for computer vision or other sensors and actuators.
         Additionally this can also be created into other forms, such as bust of Alfred Pennyworth (Batmans Butler) which im considering if I make a V2.
         </p>
-
-        <hr class="divider">
 
         <p>If you want to check out the project for yourself and built your own, you can find the source code below:</p>
         <div class="project-links">
