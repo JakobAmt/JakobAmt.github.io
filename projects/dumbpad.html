@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumbpad Macropad - Jakob A</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- Copy the GoatCounter snippet + Three.js import map / stl-viewer.js script tags from your WatchMate page here -->
+</head>
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="../index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="../index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="../about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="../projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+        <p><a href="../projects.html">&larr; Back to projects</a></p>
+
+        <h2>Dumbpad Macropad</h2>
+        <p class="subtitle">3D printing · Soldering · QMK firmware in C</p>
+
+        <hr class="divider">
+
+        <p>A 3D-printed, hand-wired macropad based on the open-source
+        <a href="https://github.com/imchipwood/dumbpad" target="_blank" rel="noopener">dumbpad</a>
+        v1.x dual-encoder design, built without a PCB around a Pro Micro (ATmega32u4) running QMK firmware.</p>
+
+        <p>The build combined mechanical assembly, embedded firmware development and basic electronics:
+        soldering the switch matrix and status LEDs (with current-limiting resistors), wiring two rotary
+        encoders, and writing a custom QMK keymap in C.</p>
+
+        <!-- Optional 3D model, same attributes as the WatchMate viewer -->
+        <!-- <div class="stl-viewer" data-stl="../models/dumbpad.stl" data-rotate-x="-90" data-rotate-z="0"></div> -->
+
+        <div class="image-container">
+        <img src="../pictures/dumbpad/dumbpad-1.JPEG" alt="Finished dumbpad macropad" style="width: 75%;">
+        </div>
+
+        <hr class="divider">
+
+        <h3>Firmware</h3>
+        <p>Custom QMK keymap and firmware logic:</p>
+        <ul>
+            <li>Numpad layout on the key matrix</li>
+            <li>Encoder 1 mapped to system volume</li>
+            <li>Encoder 2 cycles an RGB indicator LED through on/off color combinations via GPIO</li>
+        </ul>
+
+        <h3>What I learned</h3>
+        <ul>
+            <li>3D printing the case and enclosure</li>
+            <li>Hands-on soldering </li>
+            <li>Embedded C with QMK: the build system, GPIO control and encoder handling</li>
+        </ul>
+
+        <h3>Next steps</h3>
+        <p>Moving from finished designed pcb to a custom-designed PCB, to make the build more
+        custom and open the door to more complex circuitry such as addressable RGB and
+        additional inputs.</p>
+
+        <hr class="divider">
+
+        <footer>Made in Norway</footer>
+    </div>
+
+</body>
+</html>
