@@ -53,6 +53,8 @@
             running on a Raspberry Pi 5. The project combines hardware electronics,
             mechanical design, and AI APIs to create a desktop companion that responds to voice commands, 
             displays animations, and reacts to its requests with lights and sound.</p>
+        <p> For the 3D printed design it was done by using a finished model from Printables: <a href="https://www.printables.com/model/676130-astromech-droid" target="_blank" rel="noopener">R2D2 Astromech Droid Link</a>. The model however has been modified by me to have a servo mount inside the head, and holes for RGB Diodes and USB-C connector. Additional parts were also added for mounting the Raspberry Pi and speaker.</p>
+
 
         <hr class="divider">
 
@@ -77,22 +79,26 @@
         </p>
 
         <hr class="divider">
+        <h3>Gallery</h3>
+        <p>Press on the images to view them in full size:</p>
+        <div class="project-gallery">
+            <img src="../pictures/r2d2 exploded diagram.png" alt="3D model of the Astromech" style="width: 75%;">
+            <img src="../pictures/astromech control panel screenshot.png" alt="Astromech in action" style="width: 75%;">
 
-        <div class="image-container">
-        <img src="../pictures/r2d2 exploded diagram.png" alt="" style="width: 75%;">
         </div>
-        <p>Exploded Diagram of the Astromech drawn with AI</p>
 
         <hr class="divider">
 
-        <p>This is a beginner friendly project to get your hands on everything from RaspberryPi, small electronics,
+        <h3>Thoughts and Reflections</h3>
+        <p>This is a very beginner friendly project to get your hands on everything from RaspberryPi, small electronics,
         and API integration. This can also be built futher upon with more APIs, a camera for computer vision or other sensors and actuators.
         Additionally this can also be created into other forms, such as bust of Alfred Pennyworth (Batmans Butler) which im considering if I make a V2.
         </p>
 
         <p>If you want to check out the project for yourself and built your own, you can find the source code below:</p>
         <div class="project-links">
-            <a href="https://github.com/JakobAmt/R2D2-Voice-Assistant" target="_blank" rel="noopener">Astromech GitHub Repository</a>
+            <a href="https://github.com/JakobAmt/R2D2-Voice-Assistant" target="_blank" rel="noopener">Astromech GitHub Repository</a> 
+            <a href="https://www.printables.com/model/676130-astromech-droid" target="_blank" rel="noopener">3D Model</a> 
         </div>
 
         <hr class="divider">
@@ -101,6 +107,30 @@
     </div>
 
     <script type="module" src="../stl-viewer.js"></script>
+
+
+<script>
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    const lightboxImg = document.createElement('img');
+    lightbox.appendChild(lightboxImg);
+    document.body.appendChild(lightbox);
+
+    document.querySelectorAll('.project-gallery img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('open');
+        });
+    });
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+</script>
+
+
 
 </body>
 </html>
