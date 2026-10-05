@@ -28,27 +28,25 @@
         <p><a href="../projects.html">&larr; Back to projects</a></p>
 
         <h2>Dumbpad Macropad</h2>
-        <p class="subtitle">3D printing · Soldering · QMK firmware in C</p>
+        <div class="tag-row">
+            <span class="tag">QMK Firmware in C</span>
+            <span class="tag">Low Voltage Electronics</span>
+            <span class="tag">Mechanical Assembly</span>
+            <span class="tag">3D Printing</span>
+        </div>
 
-        <hr class="divider">
-
-        <p>A 3D-printed, hand-wired macropad based on the open-source
+        <p>A 3D-printed, hand-soldered macropad based on the open-source
         <a href="https://github.com/imchipwood/dumbpad" target="_blank" rel="noopener">dumbpad</a>
-        v1.x dual-encoder design, built without a PCB around a Pro Micro (ATmega32u4) running QMK firmware.</p>
+        v1.x dual-encoder design, built with a PCB and a Pro Micro (ATmega32u4) running QMK firmware.</p>
 
         <p>The build combined mechanical assembly, embedded firmware development and basic electronics:
-        soldering the switch matrix and status LEDs (with current-limiting resistors), wiring two rotary
-        encoders, and writing a custom QMK keymap in C.</p>
+        soldering the switches, diode matrix and status LEDs (including resistors), wiring two rotary
+        encoders, and programming a custom QMK keymap in C with help of QMK Developer tools.</p>
 
         <!-- Optional 3D model, same attributes as the WatchMate viewer -->
         <!-- <div class="stl-viewer" data-stl="../models/dumbpad.stl" data-rotate-x="-90" data-rotate-z="0"></div> -->
 
-        <div class="image-container">
-        <img src="../pictures/dumbpad/dumbpad-1.JPEG" alt="Finished dumbpad macropad" style="width: 75%;">
-        </div>
-
-        <hr class="divider">
-
+        
         <h3>Firmware</h3>
         <p>Custom QMK keymap and firmware logic:</p>
         <ul>
@@ -57,6 +55,7 @@
             <li>Encoder 2 cycles an RGB indicator LED through on/off color combinations via GPIO</li>
         </ul>
 
+        <p></p>
         <h3>What I learned</h3>
         <ul>
             <li>3D printing the case and enclosure</li>
@@ -64,10 +63,18 @@
             <li>Embedded C with QMK: the build system, GPIO control and encoder handling</li>
         </ul>
 
-        <h3>Next steps</h3>
-        <p>Moving from finished designed pcb to a custom-designed PCB, to make the build more
-        custom and open the door to more complex circuitry such as addressable RGB and
-        additional inputs.</p>
+        <hr class="divider">
+
+        <h3>Finished Product</h3>
+        <div class="image-container">
+        <img src="../pictures/dumbpad/dumbpad-1.JPEG" alt="Finished dumbpad macropad" style="width: 75%;">
+        </div>
+
+        <h3>The next step</h3>
+        <p>Moving from finished designed pcb over to a custom-designed PCB, to make the build more
+        custom and personal. Changes i want to include is a smaller footprint, with maybe a 3x3 matrix and a single encoder. keeping the LED but use pins with PWM for more color options.
+        I also want to add a small OLED display to show the current mode and encoder value. This will require some more advanced programming in QMK, but it will be a fun challenge.
+    </p>
 
         <hr class="divider">
 
