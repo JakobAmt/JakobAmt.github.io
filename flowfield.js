@@ -5,7 +5,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---- Tweakables ----
-  const COLOR      = 'rgba(0, 180, 216, 0.22)'; // line colour + opacity
+  const COLOR      = 'rgba(50, 209, 230, 0.27)'; // line colour + opacity
   const LINE_WIDTH = 1.2;
   const CELL       = 8;        // grid resolution in px (smaller = smoother lines, more CPU)
   const SCALE      = 0.0025;   // terrain zoom (smaller = bigger blobs)

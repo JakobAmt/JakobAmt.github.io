@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROS 2 - Self-Balancing Robot</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200"><a href="../index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a></td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="../index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="../about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="../projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+
+        <a class="back-link" href="../projects.html">Back to Projects</a>
+
+        <h1>ROS2 - Self-Balancing Robot</h1>
+        <p class="subtitle">Exam project · ACIT 4820 Applied Robotics and Autonomous Systems · OsloMet</p>
+
+        <div class="tag-row">
+            <span class="tag">ROS2 Jazzy</span>
+            <span class="tag">Gazebo Harmonic</span>
+            <span class="tag">Python</span>
+            <span class="tag">PID</span>
+            <span class="tag">OpenCV</span>
+        </div>
+
+        <p>A two-wheeled, self-balancing robot simulated in ROS2 and Gazebo. It works like an inverted pendulum, the same principle behind Segways and electric unicycles. An IMU measures the tilt of the body, and a PID controller I wrote from scratch drives the wheels to keep it upright. On top of that, I added keyboard control for driving and a camera with computer vision that detects a track on the ground and steers the robot along it.</p>
+
+        <!-- Add YouTube embed here when the video is up
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        -->
+
+        <hr class="divider">
+
+        <h2>How it works</h2>
+
+        <p><strong>Robot model:</strong> I defined the robot in Xacro. It has an 80 cm tall box body on two differential-drive wheels with a 10 cm radius. A tall body puts the center of mass high, which makes it easier to control. Heavy wheels keep the robot bottom-heavy.</p>
+
+        <p><strong>Balance controller:</strong> The IMU publishes the body's pitch at 100 Hz. The PID node compares it to the setpoint (upright) and sends a corrective velocity to <code>cmd_vel</code>. The node also publishes each P, I and D term on a debug topic, so I could tune the gains live by watching them in rqt_plot.</p>
+
+        <p><strong>Keyboard control:</strong> A small Pygame window reads WASD. W/S shift the balance setpoint by ±0.1 rad, so the robot leans and drives in that direction. A/D rotate it around the z-axis. The setpoint ramps in steps of 0.02 instead of jumping, which keeps the D term from spiking.</p>
+
+        <p><strong>Computer vision:</strong> A camera on the front of the robot is tilted 45° down at the track. An OpenCV node blurs and thresholds each frame to find the black lines at 30 fps. A P-controller then rotates the robot to keep it centered between the lines.</p>
+
+        <hr class="divider">
+
+        <h2>Results</h2>
+
+        <p>The balance controller is very reliable. It kept the robot upright for over 90 minutes, after which I stopped timing, and the sway stayed within about ±0.06 rad. It also recovered from a push that tilted the robot to −0.4 rad, settling back to upright in about 2 seconds.</p>
+
+        <table class="pid-table">
+            <tr><th>Kp</th><th>Ki</th><th>Kd</th><th>Recovery</th><th>Notes</th></tr>
+            <tr><td>5</td><td>1</td><td>2</td><td>3.1 s</td><td>Main setting used through the project</td></tr>
+            <tr><td>7</td><td>1</td><td>2</td><td>2.4 s</td><td>Quicker response</td></tr>
+            <tr><td>7</td><td>1</td><td>3</td><td>2.1 s</td><td>Fastest, but skittish and unstable</td></tr>
+            <tr><td>3</td><td>1</td><td>2</td><td>5.2 s</td><td>Sluggish</td></tr>
+        </table>
+
+        <p>The vision system detected the track borders every time and steered well. The robot is not fully autonomous yet, though. Forward driving still comes from the keyboard, and it tends to fall over in the curves.</p>
+
+        <hr class="divider">
+
+        <h2>Challenges</h2>
+
+        <p><strong>Camera breaking the balance:</strong> For a long time the robot could not stay upright with the camera loaded, and Gazebo stuttered. The cause turned out to be the camera being bridged in <code>gz_bridge.yaml</code> even though Gazebo already publishes it, so the topic was published twice. Removing that bridge fixed both the balance and the flickering.</p>
+
+        <p><strong>Competing commands:</strong> Driving and turning at the same time made the robot fall. Each node publishes a full Twist message to <code>cmd_vel</code>, so the last message wins and the balance command gets overwritten. The proper fix is <code>twist_mux</code>: each source publishes on its own topic, and the mux merges them.</p>
+
+        <p><strong>Runaway after a fall:</strong> Once the robot had fallen, the controller kept winding up speed until the simulation crashed or the robot flew off. Saturating the output fixed that.</p>
+
+        <hr class="divider">
+
+        <h2>Next steps</h2>
+        <p>Next on the list:</p>
+        <ul>
+            <li>Add <code>twist_mux</code> so the robot can drive the whole track on its own.</li>
+            <li>Fuse IMU and wheel odometry with an EKF.</li>
+            <li>Add localization (SLAM) so the robot stops drifting.</li>
+            <li>Tune the gains systematically with Ziegler–Nichols.</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2>Gallery</h2>
+        <p>Press on the images to view them in full size:</p>
+        <div class="project-gallery">
+            <img src="../pictures/ros2_self_balancing_robot/final system with frames.PNG" alt="Balancing robot in Gazebo with the track">
+            <img src="../pictures/ros2_self_balancing_robot/Pid Controller graphed with only p and i.PNG" alt="OpenCV line detection with green contours">
+            <img src="../pictures/ros2_self_balancing_robot/UltimateController RQT.PNG" alt="rqt_plot of the PID terms">
+            
+        </div>
+
+        <hr class="divider">
+
+        <footer>Made in Norway</footer>
+    </div>
+
+<!-- Gallery viewer   -->
+<script>
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        const lightboxImg = document.createElement('img');
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+
+        document.querySelectorAll('.project-gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+
+</body>
+</html>
