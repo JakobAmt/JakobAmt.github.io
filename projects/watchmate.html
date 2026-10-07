@@ -63,7 +63,7 @@
 
         <hr class="divider">
 
-        <h3>Flowchart</h3>
+        <h3>Overview</h3>
         <p>
             &bull; Designed and manufactured 3D-printed watch stands in-house<br>
             &bull; Owned the full product lifecycle from CAD to customer's door<br>
@@ -74,14 +74,20 @@
 
         <hr class="divider">
 
+        <h3> Check out social media and the webpage for watchmate: </h3>
+        <div class="project-links">
+            <a href="https://www.instagram.com/watchmate.ja/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://watchmate.no/" target="_blank" rel="noopener">watchmate.no</a>
+        </div>
+
+
+        <hr class="divider">
+
         <h2>Gallery</h2>
+        <p>Press on the images to view them in full size:</p>
         <div class="project-gallery">
             <img src="../pictures/IMG_4743.JPEG" alt="###">
             <img src="../pictures/IMG_3306.JPG" alt="WatchMate products laid out at a watch fair">
-        </div>
-
-        <div class="project-links">
-            <a href="https://www.instagram.com/watchmate.ja/" target="_blank" rel="noopener">Instagram</a>
         </div>
 
         <hr class="divider">
@@ -90,6 +96,29 @@
     </div>
 
     <script type="module" src="../stl-viewer.js"></script>
+
+<!-- Gallery viewer   -->
+<script>
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        const lightboxImg = document.createElement('img');
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+
+        document.querySelectorAll('.project-gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+
 
 </body>
 </html>
