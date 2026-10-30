@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ironman Helmet Build - Jakob A</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <table class="nav-table" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="200">
+                <a href="../index.html" style="color:#F0F4F8; font-weight:bold;">Jakob A</a>
+            </td>
+            <td align="right">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding-left:32px;"><a href="../index.html">Home</a></td>
+                        <td style="padding-left:32px;"><a href="../about.html">About</a></td>
+                        <td style="padding-left:32px;"><a href="../projects.html" class="active">Projects</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="content">
+        <p><a href="../projects.html">&larr; Back to projects</a></p>
+
+        <h2>Ironman Helmet Build</h2>
+
+        <div class="tag-row">
+            <span class="tag">ESP32 Microcontroller</span>
+            <span class="tag">Wi-Fi SoftAP</span>
+            <span class="tag">Servo Control</span>
+            <span class="tag">Electronics</span>
+            <span class="tag">3D Printing</span>
+        </div>
+
+        <p>
+            A 3D-printed Iron Man helmet with an electronically controlled
+            faceplate and illuminated eyes. An ESP32 microcontroller hosts
+            a wireless access point, allowing the helmet's features to be
+            controlled directly from a phone.
+        </p>
+
+        <h3>Mechanical Design</h3>
+        <p>
+            The mechanical components are based on designs shared by other
+            makers on MakerWorld:
+        </p>
+
+        <ul>
+            <li>
+                Helmet design by GioBu:
+                <a href="https://makerworld.com/en/models/3130856-iron-man-mk2-helmet-a1-mini-all-printers?from=search#profileId-3533271"
+                   target="_blank" rel="noopener noreferrer">
+                    Iron Man MK2 Helmet
+                </a>
+            </li>
+            <li>
+                Servo mechanism by Walsh3D:
+                <a href="https://makerworld.com/en/models/2303144-walsh3d-iron-man-servo-pro-all-in-one-kit?from=search#profileId-2513793"
+                   target="_blank" rel="noopener noreferrer">
+                    Iron Man Servo Pro
+                </a>
+            </li>
+        </ul>
+
+        <h3>Electronics and Control</h3>
+        <p>
+            I designed and assembled the electronics using a solderable
+            prototyping board, connecting two MG90S servos, two LEDs and
+            an ESP32. The servos are controlled through GPIO pins 25 and 26,
+            while the eye LEDs use pins 18 and 19 with individual 220 Ω resistors.
+        </p>
+
+        <p>
+            The ESP32 runs a Wi-Fi access point and a web interface
+            for opening and closing the faceplate and switching the eye
+            lights on and off. Initial testing is powered by a 5V power bank.
+        </p>
+
+        <h3>Web Control Interface</h3>
+        <p>
+            The helmet can be controlled wirelessly through a webpage hosted
+            directly on the ESP32. Once connected to the helmet's Wi-Fi
+            network, the user can operate the servos and eye lighting from a phone.
+        </p>
+
+        <div class="image-container">
+            <img src="../pictures/Ironman_helmet/helmet_control.png"
+                 alt="ESP32 helmet control webpage"
+                 style="width: 75%;">
+            <p><em>Web-based control interface hosted on the ESP32.</em></p>
+        </div>
+
+        <h3>Finished Product</h3>
+        <div class="image-container">
+            <img src="../pictures/Ironman_helmet/Ironman helmet.JPEG"
+                 alt="Finished Iron Man helmet"
+                 style="width: 75%;">
+        </div>
+
+        <hr class="divider">
+
+    </div>
+
+    <footer>Made in Norway</footer>
+
+</body>
+</html>

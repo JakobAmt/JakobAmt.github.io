@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^git clone https://github\\.com/JakobAmt/JakobAmt\\.github\\.io\\.git \\.$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
