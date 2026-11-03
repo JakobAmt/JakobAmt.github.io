@@ -73,7 +73,7 @@
         <h3>Electronics and Control</h3>
         <p>
             I designed and assembled the electronics using a solderable
-            prototyping board, connecting two MG90S servos, two LEDs and
+            prototyping board, connecting two SG90 servos, two LEDs and
             an ESP32. The servos are controlled through GPIO pins 25 and 26,
             while the eye LEDs use pins 18 and 19 with individual 220 Ω resistors.
         </p>
@@ -88,7 +88,7 @@
         <p>
             The helmet can be controlled wirelessly through a webpage hosted
             directly on the ESP32. Once connected to the helmet's Wi-Fi
-            network, the user can operate the servos and eye lighting from a phone.
+            network, the user can operate the servos and eye lighting from a phone or smartwatch.
         </p>
 
         <div class="image-container">
@@ -105,11 +105,14 @@
                  style="width: 75%;">
         </div>
 
+    <!--
         <h3>Demo Video</h3>
-        <video width="640" height="360" controls>
-            <source src="pictures/ironman_helmet/demo_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <video controls preload="metadata" playsinline
+        poster="pictures/ironman_helmet/demo_poster.jpg">
+        <source src="pictures/ironman_helmet/demo video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    -->
 
         <hr class="divider">
 
