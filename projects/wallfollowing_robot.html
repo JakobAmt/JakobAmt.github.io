@@ -42,37 +42,75 @@
 
         <div class="tag-row">
             <span class="tag">Ros2</span>
+            <span class="tag">RViz</span>
+            <span class="tag">Xacro/URDF</span>
             <span class="tag">Gazebo</span>
             <span class="tag">Python</span>
-            <span class ="tag">SLAM</span>
+            <span class ="tag">SLAM Toolbox</span>
         </div>
 
+        <h3>Project and Context</h3>
+        <p>The robot is a simulated differential-drive robot that went from a hand-written model to a fully autonomous explorer. I built it in three stages for a school project, each one building upon the previous. First I described the robot and gave it a LiDAR. Then I wrote my own controller to drive it through a maze. Finally I gave it SLAM and Nav2, so it could map an unknown maze and explore it without any help from me.
+        </p>     
         
-        <p>Autonomous wall-following robot built in ROS2 and Gazebo. The robot uses a LIDAR sensor to detect walls and obstacles, and follows the walls while avoiding collisions. The robot is able to navigate through a maze-like environment.
-            Video below doesnt demonstrate the SLAM but uses the lidar with a PID controller to distance itself away from the wall and drive though the maze.
-        </p>            
+        <h3>Demo Video</h3>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/vR454tb5PYI?si=cHgbkWT09RIwd3eY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         
-        <!-- fix image later 
-        <div class="picture-container">
-            <img src="../pictures/d809a923-9bce-4dde-a6d1-66a46a75e28f.jpg" alt="###">
-        </div>
-        -->
+        <h3>Stage 1: Building a modular robot with Xacro</h3>
+        <p>I rewrote the robot model in Xacro. Shared values like wheel size, mass and offsets are defined once, and one macro builds both wheels. The robot is split into separate files for the body, the physics, the drive plugin and the LiDAR. A differential drive plugin turns /cmd_vel commands into wheel motion. A front-facing 2D LiDAR scans 180° and publishes to /scan.</p> 
+    
 
-        <hr class="divider">
+        <h3>Stage 2: Writing a controller to follow walls</h3>
+        <p>I wanted the robot to get through a maze using only my own code. My first wall-follower looked straight out to the sides (±90°). It saw corners too late and crashed. The fix was to have it look 60° to each side, slightly ahead, so it sees corners coming. With that change, a simple P-controller was enough. It steers to keep the left and right wall distances equal. After tuning, the robot got through the maze in about 53 seconds. I also made the controller work with any LiDAR setup. It calculates the ±60° beams from the scan's own angle data instead of using hard-coded indices:</p>
 
-        <h2>Gallery</h2>
+        <!-- Python code snippet -->
+        <pre><code class="language-python">idx_right = int(round(( wanted_angle_rad - angle_min) / angle_increment))
+idx_left  = int(round((-wanted_angle_rad - angle_min) / angle_increment))</code></pre>
+        
+        <br>
+        <h3>Stage 3: SLAM and autonomous exploration</h3>
+        <ul>
+            <li>SLAM Toolbox builds a map of the maze while tracking where the robot is in it.</li>
+            <li>Nav2 plans safe paths to goals on that map.</li>
+            <li>I increased the wall safety margin from 0.5 m to 0.7 m for the narrow corridors.</li>
+            <li>Frontier exploration sends the robot to the edge of unexplored space, again and again, until the whole maze is mapped. Then it drives back to where it started.</li>
+        </ul>
+
+        <br>
+
+        <h3>Takeaways from the project</h3>
+        <p> The project showed me the difference between reactive control and planned navigation. My P-controller was fast and simple, and tuning it taught me a lot about how sensor placement and gains shape a robot's behaviour. But it only reacts to what it sees right now. SLAM and Nav2 let the robot remember, plan and explore, which is what an actual maze needs. Building the low-level controller myself first made the higher-level tools much easier to understand once I got to them. Also, this was the first time working with ROS2 and made me alot more confident with using linux as that was somewhat new for me at the time. </p>
+       
+        <h3>Gallery</h3>
         <div class="project-gallery">
             <img src="../pictures/bcb6ade1-5d8f-443c-adeb-9e61f70511bf.jpg" alt="###">
             <img src="../pictures/d809a923-9bce-4dde-a6d1-66a46a75e28f.jpg" alt="###">
         </div>
 
-        <hr class="divider">
-
         <footer>Made in Norway</footer>
     </div>
 
-    <script type="module" src="../stl-viewer.js"></script>
+    <!-- Gallery viewer   -->
+<script>
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        const lightboxImg = document.createElement('img');
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+
+        document.querySelectorAll('.project-gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+            });
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
 
 </body>
 </html>

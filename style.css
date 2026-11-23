@@ -290,6 +290,20 @@ footer {
     pointer-events: none;
 }
 
+pre {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;   /* long lines scroll instead of breaking the layout */
+}
+
+code {
+    font-family: "Fira Code", Consolas, monospace;
+    font-size: 0.9em;
+    color: #e6edf3;
+}
+
 video {
     width: 100%;
     height: auto;
